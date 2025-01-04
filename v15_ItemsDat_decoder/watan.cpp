@@ -338,6 +338,13 @@ int main() {
 			j["sitOverlayOffsetY"] = sitOverlayOffsetY;
 			j["sitOverlayTexture"] = sitOverlayTexture;
 		}
+		if (itemsdatVersion >= 16) {
+			int16_t strLen = *(int16_t*)&data[memPos];
+			memPos += 2 + strLen;
+		}
+		if (itemsdatVersion >= 17) memPos += 4;
+		if (itemsdatVersion >= 18) memPos += 4;
+		if (itemsdatVersion >= 19) memPos += 9;
 		jdata["items"].push_back(j);
 	}
 	std::ofstream o("data.json");
